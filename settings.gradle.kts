@@ -1,1 +1,7 @@
-include(":shared", ":android", ":desktop")
+include(
+  ":shared:uikit",
+  ":shared:list:ui",
+  ":shared",
+  ":android",
+  ":desktop"
+)
