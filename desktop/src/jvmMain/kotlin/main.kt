@@ -10,8 +10,6 @@ fun main() = application {
         state = state,
         onCloseRequest = ::exitApplication
     ) {
-        MaterialTheme {
-            App()
-        }
+        App()
     }
 }

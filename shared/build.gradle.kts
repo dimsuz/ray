@@ -17,6 +17,7 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.material)
                 implementation(project(":shared:list:ui"))
+                implementation(project(":shared:uikit"))
             }
         }
         named("androidMain") {
