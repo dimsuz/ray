@@ -16,6 +16,7 @@ kotlin {
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)
+                api("org.jetbrains.kotlinx:kotlinx-datetime:0.3.1")
             }
         }
         named("androidMain") {

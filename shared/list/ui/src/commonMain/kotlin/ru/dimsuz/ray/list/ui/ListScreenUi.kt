@@ -2,9 +2,12 @@ package ru.dimsuz.ray.list.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
@@ -19,6 +22,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.dimsuz.ray.core.ui.string
+import ru.dimsuz.ray.list.ui.component.AlarmCard
+import ru.dimsuz.ray.list.ui.entity.Alarm
 import ru.dimsuz.ray.uikit.NavigationIcon
 import ru.dimsuz.ray.uikit.PrimaryButton
 import ru.dimsuz.ray.uikit.TopAppBar
@@ -26,7 +31,7 @@ import ru.dimsuz.ray.uikit.VSpacer
 import kotlin.jvm.JvmInline
 
 @JvmInline
-value class AlarmId(val value: String)
+value class AlarmId(val value: Any)
 
 class Intents(
   val add: () -> Unit,
@@ -42,8 +47,26 @@ internal fun ListScreenUi(
     TopAppBar(title = string("Будильники"), navigationIcon = NavigationIcon.None)
     if (state.alarms.isEmpty()) {
       EmptyScreenState()
+    } else {
+      ContentState(state.alarms)
     }
   }
+}
+
+@Composable
+private fun ContentState(alarms: List<Alarm>) {
+  LazyColumn(
+    modifier = Modifier.fillMaxSize(),
+    contentPadding = PaddingValues(horizontal = 24.dp, vertical = 24.dp)
+  ) {
+    items(alarms) { item ->
+      VSpacer(16.dp)
+      AlarmCard(
+        alarm = item
+      )
+    }
+  }
+
 }
 
 @Composable
