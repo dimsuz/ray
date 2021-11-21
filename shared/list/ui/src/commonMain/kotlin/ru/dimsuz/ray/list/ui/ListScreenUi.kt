@@ -23,12 +23,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.dimsuz.ray.core.ui.string
 import ru.dimsuz.ray.list.ui.component.AlarmCard
+import ru.dimsuz.ray.list.ui.component.AlarmListItem
 import ru.dimsuz.ray.list.ui.entity.Alarm
 import ru.dimsuz.ray.uikit.NavigationIcon
 import ru.dimsuz.ray.uikit.PrimaryButton
 import ru.dimsuz.ray.uikit.TopAppBar
 import ru.dimsuz.ray.uikit.VSpacer
 import kotlin.jvm.JvmInline
+import kotlin.time.ExperimentalTime
 
 @JvmInline
 value class AlarmId(val value: Any)
@@ -38,6 +40,7 @@ class Intents(
   val remove: (AlarmId) -> Unit,
 )
 
+@ExperimentalTime
 @Composable
 internal fun ListScreenUi(
   state: ListScreenState,
@@ -57,13 +60,11 @@ internal fun ListScreenUi(
 private fun ContentState(alarms: List<Alarm>) {
   LazyColumn(
     modifier = Modifier.fillMaxSize(),
-    contentPadding = PaddingValues(horizontal = 24.dp, vertical = 24.dp)
+    contentPadding = PaddingValues(start = 24.dp, end = 24.dp, top = 0.dp, bottom = 24.dp)
   ) {
     items(alarms) { item ->
-      VSpacer(16.dp)
-      AlarmCard(
-        alarm = item
-      )
+      VSpacer(24.dp)
+      AlarmListItem(alarm = item)
     }
   }
 

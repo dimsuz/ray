@@ -7,6 +7,9 @@ object RayTheme {
   val colors
     @Composable
     get() = MaterialTheme.colors
+  val extraColors
+    @Composable
+    get() = ThemeExtraColors
   val typography
     @Composable
     get() = MaterialTheme.typography
